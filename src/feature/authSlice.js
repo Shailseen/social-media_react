@@ -1,18 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { STATUSES } from "./videoSlice";
+import { useSelector } from "react-redux";
 // import { toast } from "react-toastify";
 
 export const STATUSES = Object.freeze({
-    IDLE: "idle",
-    ERROR: "error",
-    LOADING: "loading",
-  });
-
-const tokenFromLocalStorage = localStorage.getItem("token");
+  IDLE: "idle",
+  ERROR: "error",
+  LOADING: "loading",
+});
 
 const initialState = {
-  user: { token: tokenFromLocalStorage, firstName: "", lastName: "" },
+  user: null,
   status: STATUSES.IDLE,
 };
 
@@ -22,29 +20,25 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.status = STATUSES.IDLE;
-      state.user = {};
-      localStorage.removeItem("token");
-    //   toast('Logged out successfully!')
+      state.user = null;
+      localStorage.clear();
+      //   toast('Logged out successfully!')
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.pending, (state, action) => {
+      .addCase(loginUser.pending, (state) => {
         state.status = STATUSES.LOADING;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
-        // state.user = {
-        //   token: action.payload.encodedToken,
-        //   firstName: action.payload.foundUser.firstName,
-        //   lastName: action.payload.foundUser.lastName,
-        // };
-        // localStorage.setItem("token", action.payload.encodedToken);
+        state.user = action.payload.foundUser;
+        localStorage.setItem("userToken", action.payload.encodedToken);
+        localStorage.setItem("my-user-data",JSON.stringify(action.payload.foundUser))
         // toast(`Welcome ${state.user.firstName + state.user.lastName}`);
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(loginUser.rejected, (state) => {
         state.status = STATUSES.ERROR;
-        console.log(action.payload.message);
         // toast(action.payload.message);
       })
 
@@ -52,7 +46,6 @@ const authSlice = createSlice({
         state.status = STATUSES.LOADING;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.status = STATUSES.IDLE;
         // state.user = {
         //   token: action.payload.encodedToken,
@@ -64,32 +57,27 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.status = STATUSES.ERROR;
-        console.log(action.payload.message);
         // toast(action.payload.message);
       });
   },
 });
 
-export default authSlice.reducer;
-export const { logout } = authSlice.actions;
-
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async (data, thunkAPI) => {
+  async (userCredentials, thunkAPI) => {
     try {
-      const { username, password } = data;
-      const res = await axios.post("/api/auth/login", {
-        username: username,
-        password: password,
-      });
-      console.log(res)
-      return res.data;
+      const res = await axios.post("/api/auth/login", userCredentials);
+      const {
+        data: { foundUser, encodedToken },
+      } = res;
+      return { foundUser, encodedToken };
     } catch (error) {
-        console.log(error)
-    //   return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
+
+
 
 export const signupUser = createAsyncThunk(
   "auth/signup",
@@ -108,3 +96,7 @@ export const signupUser = createAsyncThunk(
     }
   }
 );
+
+export default authSlice.reducer;
+export const { logout } = authSlice.actions;
+// export const useAuth = () => useSelector((state) => state.auth);

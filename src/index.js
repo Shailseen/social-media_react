@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./routes/Login/Login";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Home from "./routes/Home/Home";
 
 // Call make Server
 makeServer();
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
           </Route>
         </Routes>
       </Provider>

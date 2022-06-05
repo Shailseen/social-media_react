@@ -1,22 +1,32 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../feature/authSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser, useAuth } from "../../feature/authSlice";
 
 const Login = () => {
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const guestClickHandler = () => {
-    dispatch(
-      loginUser({ username: "adarshbalika", password: "adarshBalika123" })
-    );
+    dispatch(loginUser({ username: "shailseen", password: "shail1234" }));
   };
+
+  useEffect(() => {
+    document.title = "moments | Login";
+    if (user) navigate("/home");
+  }, [user]);
+
   return (
-    <div className="flex flex-col w-3/4 p-8 rounded-sm shadow-md mx-auto my-16">
+    <div className="flex flex-col w-3/4 md:w-2/4 p-8 rounded-sm shadow-md mx-auto my-16 bg-white">
       <div className="flex">
         <span className="w-2/4 text-center text-xl bg-primary-color text-white p-1 rounded-sm">
           Login
         </span>
         <span className="w-2/4 text-center text-xl rounded-sm">Signup</span>
       </div>
+
       <section className="flex flex-col">
         <div className="flex flex-col mt-8 mb-2">
           <label className="text-gray-500" htmlFor="email">
@@ -28,6 +38,7 @@ const Login = () => {
             placeholder="Enter email here..."
           />
         </div>
+
         <div className="flex flex-col mb-8">
           <label className="text-gray-500" htmlFor="password">
             Password
@@ -38,12 +49,14 @@ const Login = () => {
             placeholder="Enter password here..."
           />
         </div>
-        <button className="bg-primary-color text-lg text-white p-2 mb-6 rounded-sm">
+
+        <button className="bg-primary-color text-lg text-white p-2 mb-6 rounded-sm hover:opacity-90">
           LogIn
         </button>
+
         <button
           onClick={() => guestClickHandler()}
-          className="bg-primary-color text-white p-2 text-lg rounded-sm"
+          className="bg-primary-color text-white p-2 text-lg rounded-sm hover:opacity-90"
         >
           Guest login
         </button>

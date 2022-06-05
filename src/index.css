@@ -5,5 +5,9 @@
 .root,
 #root,
 #docs-root {
-  --primary-color: #512da8;
+  --primary-color: #378fe9;
+}
+
+body {
+  background-color: #bdb2a21d;
 }
