@@ -6,7 +6,7 @@ import { logout } from "../../feature/authSlice";
 const Navbar = () => {
   const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const { user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const clickHandler = () => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-  }
+  };
   useEffect(() => {
     document.title = "Home";
   }, []);
@@ -36,7 +36,10 @@ const Navbar = () => {
       </div>
       {user && (
         <div className="flex items-center gap-2">
-          <button onClick={logoutHandler} className="bg-[#378fe9] text-white px-3 py-1 rounded-sm hover:opacity-90">
+          <button
+            onClick={logoutHandler}
+            className="bg-[#378fe9] text-white px-3 py-1 rounded-sm hover:opacity-90"
+          >
             Logout
           </button>
           <img

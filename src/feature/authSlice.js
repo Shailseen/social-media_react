@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
+
 
 export const STATUSES = Object.freeze({
   IDLE: "idle",
@@ -34,7 +33,10 @@ const authSlice = createSlice({
         state.status = STATUSES.IDLE;
         state.user = action.payload.foundUser;
         localStorage.setItem("userToken", action.payload.encodedToken);
-        localStorage.setItem("my-user-data",JSON.stringify(action.payload.foundUser))
+        localStorage.setItem(
+          "my-user-data",
+          JSON.stringify(action.payload.foundUser)
+        );
         // toast(`Welcome ${state.user.firstName + state.user.lastName}`);
       })
       .addCase(loginUser.rejected, (state) => {
@@ -76,8 +78,6 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-
-
 
 export const signupUser = createAsyncThunk(
   "auth/signup",

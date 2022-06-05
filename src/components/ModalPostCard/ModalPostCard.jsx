@@ -11,7 +11,9 @@ import { addPost } from "../../feature/postSlice";
 
 const ModalPostCard = ({
   user: { profileImage, username, firstName, lastName },
-  setIsPostModalOpen,isOpen,setIsOpen
+  setIsPostModalOpen,
+  isOpen,
+  setIsOpen,
 }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [postStory, setPostStory] = useState("");
@@ -171,7 +173,10 @@ const ModalPostCard = ({
             >
               Discard
             </button>
-            <button onClick={() => setIsOpen(false)} className="bg-[#378fe9] text-white px-3 py-1 rounded-sm hover:opacity-90">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="bg-[#378fe9] text-white px-3 py-1 rounded-sm hover:opacity-90"
+            >
               Continue
             </button>
           </div>

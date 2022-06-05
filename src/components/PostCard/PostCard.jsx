@@ -5,7 +5,14 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
 const PostCard = ({ postData }) => {
-  const { content, username, createdAt, profileImage,firstName,lastName } = postData;
+  const {
+    content,
+    username,
+    createdAt,
+    profileImage,
+    firstName,
+    lastName,
+  } = postData;
   const monthNames = [
     "January",
     "February",
@@ -36,7 +43,9 @@ const PostCard = ({ postData }) => {
           />
         )}
         <div className="ml-3">
-          <p className="font-bold">{firstName} {lastName}</p>
+          <p className="font-bold">
+            {firstName} {lastName}
+          </p>
           <p className="-mt-1 text-slate-400 text-sm">@{username}</p>
           <p className="-mt-1 text-slate-400 text-xs">
             • {day - 0} {month}
