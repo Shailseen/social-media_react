@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import NewPostCard from "../../components/NewPostCard/NewPostCard";
 import PostCard from "../../components/PostCard/PostCard";
-import { addPost, getPost, usePost } from "../../feature/postSlice";
+import {  getPost } from "../../feature/postSlice";
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
