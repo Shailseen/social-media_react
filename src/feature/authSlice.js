@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 export const STATUSES = Object.freeze({
   IDLE: "idle",
   ERROR: "error",
@@ -21,7 +20,6 @@ const authSlice = createSlice({
       state.status = STATUSES.IDLE;
       state.user = null;
       localStorage.clear();
-      //   toast('Logged out successfully!')
     },
   },
   extraReducers: (builder) => {
@@ -37,11 +35,9 @@ const authSlice = createSlice({
           "my-user-data",
           JSON.stringify(action.payload.foundUser)
         );
-        // toast(`Welcome ${state.user.firstName + state.user.lastName}`);
       })
       .addCase(loginUser.rejected, (state) => {
         state.status = STATUSES.ERROR;
-        // toast(action.payload.message);
       })
 
       .addCase(signupUser.pending, (state, action) => {
