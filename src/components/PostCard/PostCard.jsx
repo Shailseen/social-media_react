@@ -9,6 +9,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import EditModalPostCard from "../EditModalPostCard/EditModalPostCard";
 import Modal from "../Modal/Modal";
+import { useDispatch } from "react-redux";
+import { editPostHandler } from "../../backend/controllers/PostController";
+import { deletePost } from "../../feature/postSlice";
 
 const PostCard = ({ postData }) => {
   const {
@@ -18,8 +21,9 @@ const PostCard = ({ postData }) => {
     profileImage,
     firstName,
     lastName,
+    _id
   } = postData;
-  // console.log(content);
+  
   const monthNames = [
     "January",
     "February",
@@ -42,11 +46,20 @@ const PostCard = ({ postData }) => {
   const [isEditPostModalOpen, setIsEditPostModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useDispatch();
   const tooltipHandler = () => {
     isTooltipVisible === "hidden"
       ? setIsTooltipVisible((prev) => "visible")
       : setIsTooltipVisible((prev) => "hidden");
   };
+  const editPostHandler = () => {
+    setIsTooltipVisible("hidden");
+    setIsEditPostModalOpen(true);
+  }
+  const deletePostHandler = () => {
+    setIsTooltipVisible("hidden");
+    dispatch(deletePost(_id));
+  }
   return (
     <div className="border w-4/4 mx-4 md:w-2/4 md:mx-auto rounded-md bg-white my-2 shadow-sm">
       <div className="flex border-b-2 p-2">
@@ -81,11 +94,11 @@ const PostCard = ({ postData }) => {
           <div
             className={`border rounded-sm absolute right-2 bg-white ${isTooltipVisible}`}
           >
-            <div className="flex m-1 border-b gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1" onClick={() => setIsEditPostModalOpen(true)}>
+            <div className="flex m-1 border-b gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1" onClick={() => editPostHandler()}>
               <EditIcon />
               <p className="text-sm">edit</p>
             </div>
-            <div className="flex m-1 gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1">
+            <div className="flex m-1 gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1" onClick={() => deletePostHandler()}>
               <DeleteIcon />
               <p className="text-sm">delete</p>
             </div>

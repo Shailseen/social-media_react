@@ -38,6 +38,13 @@ const postSlice = createSlice({
       .addCase(editPost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
       });
   },
 });
@@ -93,6 +100,22 @@ export const editPost = createAsyncThunk(
           },
         }
       );
+      return res.data.posts.reverse();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "/post/delete",
+  async (postId, thunkAPI) => {
+    try {
+      const res = await axios.delete(`/api/posts/${postId}`, {
+        headers: {
+          authorization: encodedToken,
+        },
+      });
       return res.data.posts.reverse();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
