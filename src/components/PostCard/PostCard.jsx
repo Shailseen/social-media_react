@@ -1,5 +1,6 @@
 import React from "react";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -10,8 +11,7 @@ import { useState } from "react";
 import EditModalPostCard from "../EditModalPostCard/EditModalPostCard";
 import Modal from "../Modal/Modal";
 import { useDispatch } from "react-redux";
-import { editPostHandler } from "../../backend/controllers/PostController";
-import { deletePost } from "../../feature/postSlice";
+import { deletePost, likePost, unlikePost } from "../../feature/postSlice";
 
 const PostCard = ({ postData }) => {
   const {
@@ -21,9 +21,10 @@ const PostCard = ({ postData }) => {
     profileImage,
     firstName,
     lastName,
-    _id
+    _id,
+    likes: { likeCount, likedBy },
   } = postData;
-  
+  // console.log(likeCount,likedBy)
   const monthNames = [
     "January",
     "February",
@@ -52,14 +53,26 @@ const PostCard = ({ postData }) => {
       ? setIsTooltipVisible((prev) => "visible")
       : setIsTooltipVisible((prev) => "hidden");
   };
+
   const editPostHandler = () => {
     setIsTooltipVisible("hidden");
     setIsEditPostModalOpen(true);
-  }
+  };
+
   const deletePostHandler = () => {
     setIsTooltipVisible("hidden");
     dispatch(deletePost(_id));
-  }
+  };
+
+  const likeHandler = () => {
+    console.log("...like");
+    dispatch(likePost(_id));
+  };
+
+  const unlikeHandler = () => {
+    console.log("...dislike");
+    dispatch(unlikePost(_id));
+  };
   return (
     <div className="border w-4/4 mx-4 md:w-2/4 md:mx-auto rounded-md bg-white my-2 shadow-sm">
       <div className="flex border-b-2 p-2">
@@ -94,11 +107,17 @@ const PostCard = ({ postData }) => {
           <div
             className={`border rounded-sm absolute right-2 bg-white ${isTooltipVisible}`}
           >
-            <div className="flex m-1 border-b gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1" onClick={() => editPostHandler()}>
+            <div
+              className="flex m-1 border-b gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1"
+              onClick={() => editPostHandler()}
+            >
               <EditIcon />
               <p className="text-sm">edit</p>
             </div>
-            <div className="flex m-1 gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1" onClick={() => deletePostHandler()}>
+            <div
+              className="flex m-1 gap-2 hover:bg-slate-200 cursor-pointer rounded-sm p-1"
+              onClick={() => deletePostHandler()}
+            >
               <DeleteIcon />
               <p className="text-sm">delete</p>
             </div>
@@ -116,11 +135,29 @@ const PostCard = ({ postData }) => {
       </Modal>
       {content[0] && <p className="px-2 pb-4 pt-2">{content[0]}</p>}
       {content[1] && <img src={content[1]} alt="User post image" />}
-      <div className="border-t-2 mt-0 flex items-center justify-between p-2 px-4">
-        <ThumbUpOutlinedIcon />
-        <ModeCommentOutlinedIcon />
-        <ShareOutlinedIcon />
-        <BookmarkBorderOutlinedIcon />
+      <div
+        className="border-t-2 mt-0 flex items-center justify-between p-2 px-4"
+      >
+        {likedBy.some((item) => item.username === userProfile.username) ? (
+          <div className="flex gap-1">
+            <ThumbUpRoundedIcon
+              className="text-primary-color cursor-pointer"
+              onClick={() => unlikeHandler()}
+            />
+            <p>{likeCount}</p>
+          </div>
+        ) : (
+          <div className="flex gap-1">
+            <ThumbUpOutlinedIcon
+              className="hover:text-primary-color cursor-pointer"
+              onClick={() => likeHandler()}
+            />
+            <p>{likeCount > 0 && likeCount}</p>
+          </div>
+        )}
+        <ModeCommentOutlinedIcon className="hover:text-primary-color cursor-pointer" />
+        <ShareOutlinedIcon className="hover:text-primary-color cursor-pointer" />
+        <BookmarkBorderOutlinedIcon className="hover:text-primary-color cursor-pointer" />
       </div>
     </div>
   );

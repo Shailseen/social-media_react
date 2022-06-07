@@ -45,6 +45,20 @@ const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
+      })
+      .addCase(likePost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(likePost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
+      })
+      .addCase(unlikePost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(unlikePost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
       });
   },
 });
@@ -118,6 +132,48 @@ export const deletePost = createAsyncThunk(
       });
       return res.data.posts.reverse();
     } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const likePost = createAsyncThunk(
+  "/post/like",
+  async (postId, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/posts/like/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.posts.reverse();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const unlikePost = createAsyncThunk(
+  "/post/unlike",
+  async (postId, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/posts/dislike/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      console.log(res)
+      return res.data.posts.reverse();
+    } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error);
     }
   }

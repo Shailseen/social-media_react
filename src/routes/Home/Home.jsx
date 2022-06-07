@@ -20,7 +20,7 @@ const Home = () => {
     dispatch(getPost());
   }, []);
   const { posts } = useSelector((state) => state.post);
-  // console.log(posts)
+  console.log(posts)
   return (
     <>
       {user && <NewPostCard />}
