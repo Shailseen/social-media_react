@@ -10,7 +10,7 @@ import { getPost } from "../../feature/postSlice";
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
   const { status } = useSelector((state) => state.post);
-  console.log(status);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,6 +20,7 @@ const Home = () => {
     dispatch(getPost());
   }, []);
   const { posts } = useSelector((state) => state.post);
+  // console.log(posts)
   return (
     <>
       {user && <NewPostCard />}

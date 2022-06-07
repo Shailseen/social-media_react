@@ -31,6 +31,13 @@ const postSlice = createSlice({
       .addCase(getPost.fulfilled, (state, action) => {
         state.posts = action.payload;
         state.status = STATUSES.IDLE;
+      })
+      .addCase(editPost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
       });
   },
 });
@@ -64,6 +71,28 @@ export const addPost = createAsyncThunk(
         }
       );
 
+      return res.data.posts.reverse();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const editPost = createAsyncThunk(
+  "post/edit",
+  async (postContent, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/posts/edit/${postContent[2]}`,
+        {
+          postData: postContent,
+        },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
       return res.data.posts.reverse();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
