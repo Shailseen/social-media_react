@@ -11,7 +11,13 @@ import { useState } from "react";
 import EditModalPostCard from "../EditModalPostCard/EditModalPostCard";
 import Modal from "../Modal/Modal";
 import { useDispatch } from "react-redux";
-import { deletePost, likePost, unlikePost } from "../../feature/postSlice";
+import {
+  addBookmarkPost,
+  deletePost,
+  likePost,
+  unlikePost,
+} from "../../feature/postSlice";
+import Comments from "../Comments/Comments";
 
 const PostCard = ({ postData }) => {
   const {
@@ -22,9 +28,9 @@ const PostCard = ({ postData }) => {
     firstName,
     lastName,
     _id,
+    comments,
     likes: { likeCount, likedBy },
   } = postData;
-  // console.log(likeCount,likedBy)
   const monthNames = [
     "January",
     "February",
@@ -46,6 +52,7 @@ const PostCard = ({ postData }) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState("hidden");
   const [isEditPostModalOpen, setIsEditPostModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [commentDisplayStatus, setCommentDisplayStatus] = useState("hidden");
 
   const dispatch = useDispatch();
   const tooltipHandler = () => {
@@ -65,16 +72,24 @@ const PostCard = ({ postData }) => {
   };
 
   const likeHandler = () => {
-    console.log("...like");
     dispatch(likePost(_id));
   };
 
   const unlikeHandler = () => {
-    console.log("...dislike");
     dispatch(unlikePost(_id));
   };
+
+  const bookmarkHandler = () => {
+    dispatch(addBookmarkPost(_id));
+  };
+
+  const commentHandler = () => {
+    commentDisplayStatus === "hidden"
+      ? setCommentDisplayStatus("visible")
+      : setCommentDisplayStatus("hidden");
+  };
   return (
-    <div className="border w-4/4 mx-4 md:w-2/4 md:mx-auto rounded-md bg-white my-2 shadow-sm">
+    <div className="flex flex-col flex-grow border mx-4 rounded-md bg-white my-2 shadow-sm">
       <div className="flex border-b-2 p-2">
         {profileImage ? (
           <img src={profileImage} alt="" className="rounded-full w-14 h-14" />
@@ -135,9 +150,7 @@ const PostCard = ({ postData }) => {
       </Modal>
       {content[0] && <p className="px-2 pb-4 pt-2">{content[0]}</p>}
       {content[1] && <img src={content[1]} alt="User post image" />}
-      <div
-        className="border-t-2 mt-0 flex items-center justify-between p-2 px-4"
-      >
+      <div className="border-t-2 mt-0 flex items-center justify-between p-2 px-4">
         {likedBy.some((item) => item.username === userProfile.username) ? (
           <div className="flex gap-1">
             <ThumbUpRoundedIcon
@@ -155,9 +168,23 @@ const PostCard = ({ postData }) => {
             <p>{likeCount > 0 && likeCount}</p>
           </div>
         )}
-        <ModeCommentOutlinedIcon className="hover:text-primary-color cursor-pointer" />
+        <ModeCommentOutlinedIcon
+          onClick={commentHandler}
+          className="hover:text-primary-color cursor-pointer"
+        />
         <ShareOutlinedIcon className="hover:text-primary-color cursor-pointer" />
-        <BookmarkBorderOutlinedIcon className="hover:text-primary-color cursor-pointer" />
+        <BookmarkBorderOutlinedIcon
+          className="hover:text-primary-color cursor-pointer"
+          onClick={() => bookmarkHandler()}
+        />
+      </div>
+      <div className={`${commentDisplayStatus}`}>
+        <Comments
+          key={_id}
+          comments={comments}
+          postId={_id}
+          user={userProfile}
+        />
       </div>
     </div>
   );

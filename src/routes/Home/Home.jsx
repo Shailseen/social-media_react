@@ -10,7 +10,7 @@ import { getPost } from "../../feature/postSlice";
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
   const { status } = useSelector((state) => state.post);
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,20 +20,24 @@ const Home = () => {
     dispatch(getPost());
   }, []);
   const { posts } = useSelector((state) => state.post);
-  console.log(posts)
+  
   return (
-    <>
-      {user && <NewPostCard />}
-      {user && status === "loading" && (
-        <div className="w-fit mx-auto">
-          {" "}
-          <Loader />
-        </div>
-      )}
-      {posts.map((item) => {
-        return <PostCard key={item._id} postData={item} />;
-      })}
-    </>
+    <div className="flex">
+      
+      <div>
+        {user && <NewPostCard />}
+        {user && status === "loading" && (
+          <div className="w-fit mx-auto">
+            {" "}
+            <Loader />
+          </div>
+        )}
+        {posts?.map((item) => {
+          return <PostCard key={item._id} postData={item} />;
+        })}
+      </div>
+      
+    </div>
   );
 };
 

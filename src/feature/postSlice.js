@@ -59,6 +59,13 @@ const postSlice = createSlice({
       .addCase(unlikePost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
+      })
+      .addCase(commentPost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(commentPost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
       });
   },
 });
@@ -170,13 +177,51 @@ export const unlikePost = createAsyncThunk(
           },
         }
       );
-      console.log(res)
       return res.data.posts.reverse();
     } catch (error) {
-      console.log(error)
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
+export const commentPost = createAsyncThunk(
+  "/post/comment",
+  async ({postId,commentData}, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/comments/add/${postId}`,
+        {
+          commentData: commentData
+        },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        },
+      );
+      return res.data.posts.reverse();
+    } catch (error) {
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+export const addBookmarkPost = createAsyncThunk(
+  "post/bookmark",
+  async(postId,thunkAPI) => {
+    try {
+      const res = await axios.post(`/api/users/bookmark/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: encodedToken,
+        },
+      }
+      )
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+)
 export default postSlice.reducer;

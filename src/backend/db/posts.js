@@ -26,16 +26,24 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        firstName: "shashi",
+        lastName: "Maurya",
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
         text: "Interesting",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
         },
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        firstName: `Anupam`,
+        lastName: `Mittal`,
+        username: `AnupamMittal`,
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
         text: "Wow!",
         votes: {
           upvotedBy: [],
@@ -61,17 +69,25 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
-        text: "Interesting",
+        firstName: `Bhavish`,
+        lastName: ` Aggarwal`,
+        username: `bhash`,
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
+        text: "superb!!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
         },
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: uuid(),
-        username: "sohamshah",
-        text: "Wow!",
+        firstName: `Kunal`,
+        lastName: `Shah`,
+        username: `kunalb11`,
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090092/kunal_shah_nvoz1m.jpg`,
+        text: "Amazing 😎",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
