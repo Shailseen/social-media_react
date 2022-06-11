@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentPost } from "../../feature/postSlice";
+import { commentPost, deleteCommentPost } from "../../feature/postSlice";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Loader from "../Loader/Loader";
 
 const Comments = ({ comments, postId, user }) => {
@@ -22,6 +23,10 @@ const Comments = ({ comments, postId, user }) => {
   const postCommentHandler = () => {
     setCommentText("");
     dispatch(commentPost(commentData));
+  };
+
+  const deleteCommentHandler = (commentId) => {
+    dispatch(deleteCommentPost({ postId: postId, commentId: commentId }));
   };
 
   return (
@@ -78,6 +83,13 @@ const Comments = ({ comments, postId, user }) => {
               <p className="-mt-2 text-gray-400">@{item.username}</p>
               <p>{item.text}</p>
             </div>
+            {user.username === item.username && (
+              <DeleteIcon
+                sx={{ fontSize: 40 }}
+                className="ml-auto hover:text-primary-color cursor-pointer"
+                onClick={() => deleteCommentHandler(item._id)}
+              />
+            )}
           </div>
         );
       })}

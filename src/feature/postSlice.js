@@ -81,6 +81,13 @@ const postSlice = createSlice({
       .addCase(removeBookmarkPost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.bookmarks = action.payload;
+      })
+      .addCase(deleteCommentPost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(deleteCommentPost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.posts = action.payload;
       });
   },
 });
@@ -222,7 +229,7 @@ export const commentPost = createAsyncThunk(
 );
 
 export const addBookmarkPost = createAsyncThunk(
-  "post/addBookmark",
+  "post/bookmark/add",
   async (postId, thunkAPI) => {
     try {
       const res = await axios.post(
@@ -243,7 +250,7 @@ export const addBookmarkPost = createAsyncThunk(
 );
 
 export const removeBookmarkPost = createAsyncThunk(
-  "post/removeBookmark",
+  "post/bookmark/remove",
   async (postId, thunkAPI) => {
     try {
       const res = await axios.post(
@@ -257,7 +264,25 @@ export const removeBookmarkPost = createAsyncThunk(
       );
       return res.data.bookmarks;
     } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+export const deleteCommentPost = createAsyncThunk(
+  "post/comment/delete",
+  async ({ postId, commentId }, thunkAPI) => {
+    try {
+      const res = await axios.delete(
+        `/api/comments/delete/${postId}/${commentId}`,
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.posts.reverse();
+    } catch (error) {
       return thunkAPI.rejectWithValue;
     }
   }

@@ -27,7 +27,8 @@ import {
 } from "./backend/controllers/UserController";
 import {
   getPostCommentsHandler,
-  addPostCommentHandler
+  addPostCommentHandler,
+  deletePostCommentHandler
 } from "./backend/controllers/CommentsController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -75,6 +76,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
       this.get("/comments/:postId", getPostCommentsHandler.bind(this));
       this.post("/comments/add/:postId", addPostCommentHandler.bind(this));
+      this.delete("/comments/delete/:postId/:commentId",deletePostCommentHandler.bind(this));
 
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));

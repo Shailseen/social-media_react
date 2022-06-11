@@ -49,7 +49,7 @@ const PostCard = ({ postData }) => {
     "November",
     "December",
   ];
-
+  
   const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const day = createdAt.split("T")[0].split("-")[2];
   let month = createdAt.split("T")[0].split("-")[1];
@@ -87,10 +87,10 @@ const PostCard = ({ postData }) => {
   const addbookmarkHandler = () => {
     dispatch(addBookmarkPost(_id));
   };
-  
+
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost(_id));
-  }
+  };
 
   const commentHandler = () => {
     commentDisplayStatus === "hidden"
@@ -184,7 +184,10 @@ const PostCard = ({ postData }) => {
         />
         <ShareOutlinedIcon className="hover:text-primary-color cursor-pointer" />
         {bookmarks.includes(_id) ? (
-          <BookmarkIcon onClick={removeBookmarkHandler} className="cursor-pointer text-primary-color"/>
+          <BookmarkIcon
+            onClick={removeBookmarkHandler}
+            className="cursor-pointer text-primary-color"
+          />
         ) : (
           <BookmarkBorderOutlinedIcon
             className="hover:text-primary-color cursor-pointer"
