@@ -9,6 +9,7 @@ export const STATUSES = Object.freeze({
 
 const initialState = {
   posts: [],
+  bookmarks: [],
   status: STATUSES.IDLE,
 };
 
@@ -66,6 +67,20 @@ const postSlice = createSlice({
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
+      })
+      .addCase(addBookmarkPost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(addBookmarkPost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.bookmarks = action.payload;
+      })
+      .addCase(removeBookmarkPost.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(removeBookmarkPost.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.bookmarks = action.payload;
       });
   },
 });
@@ -186,18 +201,18 @@ export const unlikePost = createAsyncThunk(
 
 export const commentPost = createAsyncThunk(
   "/post/comment",
-  async ({postId,commentData}, thunkAPI) => {
+  async ({ postId, commentData }, thunkAPI) => {
     try {
       const res = await axios.post(
         `/api/comments/add/${postId}`,
         {
-          commentData: commentData
+          commentData: commentData,
         },
         {
           headers: {
             authorization: encodedToken,
           },
-        },
+        }
       );
       return res.data.posts.reverse();
     } catch (error) {
@@ -207,21 +222,44 @@ export const commentPost = createAsyncThunk(
 );
 
 export const addBookmarkPost = createAsyncThunk(
-  "post/bookmark",
-  async(postId,thunkAPI) => {
+  "post/addBookmark",
+  async (postId, thunkAPI) => {
     try {
-      const res = await axios.post(`/api/users/bookmark/${postId}`,
-      {},
-      {
-        headers: {
-          authorization: encodedToken,
-        },
-      }
-      )
-      console.log(res);
+      const res = await axios.post(
+        `/api/users/bookmark/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.bookmarks;
     } catch (error) {
       console.log(error);
+      return thunkAPI.rejectWithValue;
     }
   }
-)
+);
+
+export const removeBookmarkPost = createAsyncThunk(
+  "post/removeBookmark",
+  async (postId, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/users/remove-bookmark/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.bookmarks;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
 export default postSlice.reducer;

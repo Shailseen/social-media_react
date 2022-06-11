@@ -7,19 +7,22 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useState } from "react";
 import EditModalPostCard from "../EditModalPostCard/EditModalPostCard";
 import Modal from "../Modal/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addBookmarkPost,
   deletePost,
   likePost,
+  removeBookmarkPost,
   unlikePost,
 } from "../../feature/postSlice";
 import Comments from "../Comments/Comments";
 
 const PostCard = ({ postData }) => {
+  const { bookmarks } = useSelector((state) => state.post);
   const {
     content,
     username,
@@ -31,6 +34,7 @@ const PostCard = ({ postData }) => {
     comments,
     likes: { likeCount, likedBy },
   } = postData;
+
   const monthNames = [
     "January",
     "February",
@@ -45,6 +49,7 @@ const PostCard = ({ postData }) => {
     "November",
     "December",
   ];
+
   const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const day = createdAt.split("T")[0].split("-")[2];
   let month = createdAt.split("T")[0].split("-")[1];
@@ -79,15 +84,20 @@ const PostCard = ({ postData }) => {
     dispatch(unlikePost(_id));
   };
 
-  const bookmarkHandler = () => {
+  const addbookmarkHandler = () => {
     dispatch(addBookmarkPost(_id));
   };
+  
+  const removeBookmarkHandler = () => {
+    dispatch(removeBookmarkPost(_id));
+  }
 
   const commentHandler = () => {
     commentDisplayStatus === "hidden"
       ? setCommentDisplayStatus("visible")
       : setCommentDisplayStatus("hidden");
   };
+
   return (
     <div className="flex flex-col flex-grow border mx-4 rounded-md bg-white my-2 shadow-sm">
       <div className="flex border-b-2 p-2">
@@ -173,10 +183,14 @@ const PostCard = ({ postData }) => {
           className="hover:text-primary-color cursor-pointer"
         />
         <ShareOutlinedIcon className="hover:text-primary-color cursor-pointer" />
-        <BookmarkBorderOutlinedIcon
-          className="hover:text-primary-color cursor-pointer"
-          onClick={() => bookmarkHandler()}
-        />
+        {bookmarks.includes(_id) ? (
+          <BookmarkIcon onClick={removeBookmarkHandler} className="cursor-pointer text-primary-color"/>
+        ) : (
+          <BookmarkBorderOutlinedIcon
+            className="hover:text-primary-color cursor-pointer"
+            onClick={addbookmarkHandler}
+          />
+        )}
       </div>
       <div className={`${commentDisplayStatus}`}>
         <Comments
