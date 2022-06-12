@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import NewPostCard from "../../components/NewPostCard/NewPostCard";
 import PostCard from "../../components/PostCard/PostCard";
+import { Search } from "../../components/Search/Search";
 import { getPost } from "../../feature/postSlice";
 
 const Home = () => {
@@ -20,23 +21,21 @@ const Home = () => {
     dispatch(getPost());
   }, []);
   const { posts } = useSelector((state) => state.post);
-  
+
   return (
-    <div className="flex">
-      
-      <div>
-        {user && <NewPostCard />}
-        {user && status === "loading" && (
-          <div className="w-fit mx-auto">
-            {" "}
-            <Loader />
-          </div>
-        )}
-        {posts?.map((item) => {
-          return <PostCard key={item._id} postData={item} />;
-        })}
-      </div>
-      
+    <div>
+      <Search/>
+      {user && <NewPostCard />}
+      {user && status === "loading" && (
+        <div className="w-fit mx-auto">
+          {" "}
+          <Loader />
+        </div>
+      )}
+      <p className="ml-4 font-semibold text-xl">Your Posts</p>
+      {posts?.map((item) => {
+        return <PostCard key={item._id} postData={item} />;
+      })}
     </div>
   );
 };
