@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import SideNav from "./components/SideNav/SideNav";
@@ -5,6 +6,7 @@ import SuggestionsCard from "./components/SuggestionsCard/SuggestionsCard";
 function App() {
   const location = useLocation();
   const path = location.pathname;
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -18,9 +20,10 @@ function App() {
         <div className={`col-start-2 col-end-4 mx-auto ${path==='/' && "mx-auto w-fit border-8"}`}>
           <Outlet />
         </div>
-        {/* <div className={`hidden col-start-4 col-end-5 ${ path ==='/' ? "hidden" : "block"} lg:block`}>
+
+        {user && <div className={`hidden col-start-4 col-end-5 ${ path ==='/' ? "hidden" : "block"} lg:block`}>
           <SuggestionsCard />
-        </div> */}
+        </div>}
       </div>
     </>
   );

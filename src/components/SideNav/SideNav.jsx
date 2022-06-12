@@ -18,7 +18,7 @@ const SideNav = () => {
     fontSize: "24px",
   };
   return (
-    <div className="flex sticky top-24 flex-col w-44 md:w-56 m-4 shadow-md bg-white rounded-md">
+    <div className="flex sticky top-24 flex-col w-44 md:w-56 lg:w-80 m-4 rounded-md">
       <NavLink
         to="/home"
         style={({ isActive }) => (isActive ? enableStyle : disabledStyle)}

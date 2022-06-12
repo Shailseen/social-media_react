@@ -56,9 +56,18 @@ const authSlice = createSlice({
       .addCase(signupUser.rejected, (state, action) => {
         state.status = STATUSES.ERROR;
         // toast(action.payload.message);
+      })
+      .addCase(followUser.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(followUser.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.user = action.payload;
       });
   },
 });
+
+const encodedToken = localStorage.getItem("userToken")
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -93,6 +102,27 @@ export const signupUser = createAsyncThunk(
   }
 );
 
+export const followUser = createAsyncThunk(
+  "post/follow",
+  async (userId, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/users/follow/${userId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.user;
+    } catch (error) {
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+
 export default authSlice.reducer;
 export const { logout } = authSlice.actions;
-// export const useAuth = () => useSelector((state) => state.auth);
+

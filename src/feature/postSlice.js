@@ -88,9 +88,11 @@ const postSlice = createSlice({
       .addCase(deleteCommentPost.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
-      });
+      })
+      ;
   },
 });
+
 const encodedToken = localStorage.getItem("userToken");
 
 export const getPost = createAsyncThunk(
@@ -282,6 +284,26 @@ export const deleteCommentPost = createAsyncThunk(
         }
       );
       return res.data.posts.reverse();
+    } catch (error) {
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+export const followUser = createAsyncThunk(
+  "post/follow",
+  async (userId, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `/api/users/follow/${userId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue;
     }
