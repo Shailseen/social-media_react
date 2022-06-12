@@ -12,7 +12,7 @@ const NewPostCard = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border flex flex-col flex-grow rounded-md my-8 mx-4 w-4/4 bg-white shadow-sm">
+    <div className="border flex flex-col flex-grow rounded-md mt-4 mb-2 mx-4 w-4/4 bg-white shadow-sm">
       <div className="flex item-center gap-2 m-2">
         <img
           src={profileImage}

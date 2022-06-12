@@ -34,6 +34,7 @@ const PostCard = ({ postData }) => {
     comments,
     likes: { likeCount, likedBy },
   } = postData;
+  console.log(username)
 
   const monthNames = [
     "January",

@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       )}
       <p className="ml-4 font-semibold text-xl">Your Posts</p>
-      {posts?.map((item) => {
+      {user && posts.map((item) => {
         return <PostCard key={item._id} postData={item} />;
       })}
     </div>

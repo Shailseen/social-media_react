@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
+import { BottomNav } from "./components/BottomNav/BottomNav";
 import Navbar from "./components/Navbar/Navbar";
 import SideNav from "./components/SideNav/SideNav";
 import SuggestionsCard from "./components/SuggestionsCard/SuggestionsCard";
@@ -10,20 +11,35 @@ function App() {
 
   return (
     <>
-      <div className="sticky top-0">
+      <div className="sticky top-0 z-50">
         <Navbar />
       </div>
-      <div className={`grid ${path==='/' ? "grid-cols-1" : "grid-col-5"}`} >
-        <div className={`col-start-1 col-end-2 hidden ${ path ==='/' ? "hidden" : "block"} md:block`} >
-          <SideNav />
-        </div>
-        <div className={`col-start-2 col-end-4 mx-auto ${path==='/' && "mx-auto w-fit border-8"}`}>
-          <Outlet />
-        </div>
+      <div className={`grid`}>
+        {user && (
+          <div className={`col-start-1 col-end-2 hidden sm:block`}>
+            <SideNav />
+          </div>
+        )}
+        {user ? (
+          <div className={`col-start-2 col-end-4 mx-auto`}>
+            <Outlet />
+          </div>
+        ) : (
+          <div>
+            <Outlet />
+          </div>
+        )}
 
-        {user && <div className={`hidden col-start-4 col-end-5 ${ path ==='/' ? "hidden" : "block"} lg:block`}>
-          <SuggestionsCard />
-        </div>}
+        {user && (
+          <div className={`col-start-4 col-end-5 hidden xl:block`}>
+            <SuggestionsCard />
+          </div>
+        )}
+        {user && (
+          <div className="fixed left-0 right-0 bottom-0 sm:hidden">
+            <BottomNav />
+          </div>
+        )}
       </div>
     </>
   );

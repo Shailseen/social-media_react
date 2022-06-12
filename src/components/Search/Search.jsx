@@ -4,7 +4,7 @@ import { useState } from "react";
 import { users } from "../../backend/db/users";
 import { useEffect } from "react";
 export const Search = () => {
-  const [searchText, setSearchText] = useState(null);
+  const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {

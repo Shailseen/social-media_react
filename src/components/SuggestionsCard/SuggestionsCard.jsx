@@ -49,7 +49,7 @@ const SuggestionsCard = () => {
   };
 
   return (
-    <div className="sticky top-24 my-4 shadow-md rounded-md bg-white p-2 w-80">
+    <div className="sticky top-24 my-4 shadow-md rounded-md bg-white p-2 w-80 lg:w-96">
       <p className="text-lg font-semibold pl-2">Suggestions</p>
       {suggestionList.length ? suggestionList.map((item) => {
         return (
