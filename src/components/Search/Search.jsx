@@ -27,7 +27,13 @@ export const Search = () => {
 
   return (
     <div className="relative">
-      <div className={`flex items-center mx-4 mt-4 border-2 ${searchText ? "border-l-primary-color border-t-primary-color border-r-primary-color border-b-white rounded-t-md" : "rounded-md border-primary-color"}`}>
+      <div
+        className={`flex items-center mx-4 mt-4 border-2 ${
+          searchText
+            ? "border-l-primary-color border-t-primary-color border-r-primary-color border-b-white rounded-t-md"
+            : "rounded-md border-primary-color"
+        }`}
+      >
         <input
           type="text"
           className={`w-full p-2 focus:outline-none rounded-md`}
@@ -46,7 +52,11 @@ export const Search = () => {
           className="text-primary-color rounded-md"
         />
       </div>
-      <div className={`bg-white absolute mx-4 top-11 left-0 right-0 border-l-2 border-b-2 border-r-2 border-l-primary-color border-b-primary-color border-r-primary-color ${searchText ? "visible rounded-b-md" : "hidden"}`}>
+      <div
+        className={`bg-white absolute mx-4 top-11 left-0 right-0 border-l-2 border-b-2 border-r-2 border-l-primary-color border-b-primary-color border-r-primary-color ${
+          searchText ? "visible rounded-b-md" : "hidden"
+        }`}
+      >
         {searchResult.length ? (
           searchResult.map((item) => {
             return (
