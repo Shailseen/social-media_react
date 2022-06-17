@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import NewPostCard from "../../components/NewPostCard/NewPostCard";
 import PostCard from "../../components/PostCard/PostCard";
+import { Search } from "../../components/Search/Search";
 import { getPost } from "../../feature/postSlice";
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
   const { status } = useSelector((state) => state.post);
-  console.log(status);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,8 +21,10 @@ const Home = () => {
     dispatch(getPost());
   }, []);
   const { posts } = useSelector((state) => state.post);
+
   return (
-    <>
+    <div>
+      <Search/>
       {user && <NewPostCard />}
       {user && status === "loading" && (
         <div className="w-fit mx-auto">
@@ -29,10 +32,11 @@ const Home = () => {
           <Loader />
         </div>
       )}
-      {posts.map((item) => {
+      <p className="ml-4 font-semibold text-xl">Your Posts</p>
+      {user && posts.map((item) => {
         return <PostCard key={item._id} postData={item} />;
       })}
-    </>
+    </div>
   );
 };
 

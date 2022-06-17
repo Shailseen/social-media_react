@@ -21,10 +21,10 @@ export const users = [
     website: `https://shashikant-maurya.netlify.app/index.html`,
     followers: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -53,10 +53,10 @@ export const users = [
     ],
     following: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -89,12 +89,12 @@ export const users = [
     firstName: "Shailesh",
     lastName: "Kumar",
     username: "shailseen",
+    profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
     email: "shailesh@gmail.com",
     password: "shail1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: `Student  @neoG |  @Graphic era`,
-    profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654094890/tanay_pratap_background_vajqoq.jpg`,
     followers: [
       {
@@ -172,10 +172,10 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Bhavish`,
@@ -201,10 +201,10 @@ export const users = [
     website: `https://mydukaan.io/`,
     followers: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Bhavish`,
@@ -221,10 +221,10 @@ export const users = [
     ],
     following: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -268,10 +268,10 @@ export const users = [
     website: `https://t.co/2fukVxoHsx`,
     followers: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -294,10 +294,10 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -327,10 +327,10 @@ export const users = [
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654101166/anupam_mittal_background_tlcaxw.jpg`,
     followers: [
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,
@@ -359,10 +359,10 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
       {
-        firstName: "Tanay",
-        lastName: "Pratap",
-        username: "tanaypratap",
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654073431/tanay_profile_pic_luvain.jpg`,
+        firstName: "Shailesh",
+        lastName: "Kumar",
+        username: "shailseen",
+        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
         firstName: `Kunal`,

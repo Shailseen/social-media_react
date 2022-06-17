@@ -3,19 +3,25 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../feature/authSlice";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const clickHandler = () => {
-    const navigate = useNavigate();
     navigate("/home");
   };
 
   const logoutHandler = () => {
     dispatch(logout());
   };
+
+  useEffect(() => {
+    if (!user) navigate("/");
+  }, [user]);
+
   useEffect(() => {
     document.title = "Home";
   }, []);

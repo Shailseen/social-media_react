@@ -19,7 +19,7 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div className="flex flex-col w-3/4 md:w-2/4 p-8 rounded-sm shadow-md mx-auto my-16 bg-white">
+    <div className="flex flex-col p-8 rounded-sm shadow-md mx-auto my-20 bg-white w-80 lg:w-1/3">
       <div className="flex">
         <span className="w-2/4 text-center text-xl bg-primary-color text-white p-1 rounded-sm">
           Login
