@@ -49,7 +49,10 @@ const Comments = ({ comments, postId, user }) => {
       </div>
       <div className="w-fit ml-auto mr-2">
         <button
-          className={`bg-[#378fe9] text-white px-3 py-1 rounded-sm hover:opacity-90 ${
+          disabled={!commentText.length}
+          className={`bg-[#378fe9] text-white px-3 py-1 rounded-sm ${
+            commentText.length ? "hover:opacity-90" : "hover:opacity-50"
+          } ${
             !commentText.length
               ? "opacity-50 cursor-not-allowed"
               : "opacity-100 cursor-pointer"
