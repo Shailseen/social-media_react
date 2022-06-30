@@ -63,6 +63,20 @@ const authSlice = createSlice({
       .addCase(followUser.fulfilled, (state, action) => {
         state.status = STATUSES.IDLE;
         state.user = action.payload;
+      })
+      .addCase(unFollowUser.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(unFollowUser.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.user = action.payload;
+      })
+      .addCase(editUserDetails.pending, (state) => {
+        state.status = STATUSES.LOADING;
+      })
+      .addCase(editUserDetails.fulfilled, (state, action) => {
+        state.status = STATUSES.IDLE;
+        state.user = action.payload;
       });
   },
 });
@@ -103,12 +117,57 @@ export const signupUser = createAsyncThunk(
 );
 
 export const followUser = createAsyncThunk(
-  "post/follow",
+  "user/follow",
   async (userId, thunkAPI) => {
     try {
       const res = await axios.post(
         `/api/users/follow/${userId}`,
         {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.user;
+    } catch (error) {
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+
+export const unFollowUser = createAsyncThunk(
+  "user/unFollow",
+  async (userId, thunkAPI) => {
+    try {
+      console.log(userId);
+      const res = await axios.post(
+        `/api/users/unfollow/${userId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      return res.data.user;
+    } catch (error) {
+      return thunkAPI.rejectWithValue;
+    }
+  }
+);
+
+export const editUserDetails = createAsyncThunk(
+  "user/edit",
+  async (userData, thunkAPI) => {
+    try {
+      console.log(userData);
+      const res = await axios.post(
+        `/api/users/edit`,
+        {
+          userData: userData
+        },
         {
           headers: {
             authorization: encodedToken,

@@ -22,7 +22,7 @@ export const getAllUsersHandler = function () {
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: userId }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -215,7 +215,7 @@ export const followUserHandler = function (schema, request) {
         }
       );
     }
-    const isFollowing = user.following.some(
+    const isFollowing = user.followings.some(
       (currUser) => currUser._id === followUser._id
     );
 
@@ -225,11 +225,11 @@ export const followUserHandler = function (schema, request) {
 
     const updatedUser = {
       ...user,
-      following: [...user.following, { ...followUser }],
+      followings: [...user.followings, { ...followUser }],
     };
     const updatedFollowUser = {
       ...followUser,
-      followers: [...followUser.followers, { ...user }],
+      follower: [...followUser.follower, { ...user }],
     };
     this.db.users.update(
       { _id: user._id },
@@ -276,7 +276,7 @@ export const unfollowUserHandler = function (schema, request) {
         }
       );
     }
-    const isFollowing = user.following.some(
+    const isFollowing = user.followings.some(
       (currUser) => currUser._id === followUser._id
     );
 
@@ -286,13 +286,13 @@ export const unfollowUserHandler = function (schema, request) {
 
     const updatedUser = {
       ...user,
-      following: user.following.filter(
+      followings: user.followings.filter(
         (currUser) => currUser._id !== followUser._id
       ),
     };
     const updatedFollowUser = {
       ...followUser,
-      followers: followUser.followers.filter(
+      follower: followUser.follower.filter(
         (currUser) => currUser._id !== user._id
       ),
     };

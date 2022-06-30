@@ -18,11 +18,12 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
-    firstName: "Adarsh",
-    lastName: "Raj",
+    username: "shashi1",
+    firstName: "shashi",
+    lastName: "Maurya",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
     comments: [
       {
         _id: uuid(),
@@ -63,9 +64,10 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
-    firstName: "Subhas",
-    lastName: "Moni",
+    username: "kunalb11",
+    firstName: "Kunal",
+    lastName: "Shah",
+    profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090092/kunal_shah_nvoz1m.jpg`,
     comments: [
       {
         _id: uuid(),

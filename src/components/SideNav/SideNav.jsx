@@ -4,8 +4,10 @@ import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SideNav = () => {
+  const {user} = useSelector(state => state.auth);
   let enableStyle = {
     color: "var(--primary-color)",
     textDecoration: "none",
@@ -44,7 +46,7 @@ const SideNav = () => {
         <span>Bookmark</span>
       </NavLink>
       <NavLink
-        to="/c"
+        to={`/profile/${user.username}/posts`}
         style={({ isActive }) => (isActive ? enableStyle : disabledStyle)}
         className="flex items-center pl-2 py-2"
       >

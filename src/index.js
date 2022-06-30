@@ -8,6 +8,7 @@ import Login from "./routes/Login/Login";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Home from "./routes/Home/Home";
+import { Profile } from "./routes/Profile/Profile";
 
 // Call make Server
 makeServer();
@@ -20,6 +21,9 @@ ReactDOM.render(
           <Route path="/" element={<App />}>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/profile/:username/posts" element={<Profile />} />
+            <Route path="/profile/:username/followers" element={<Profile />} />
+            <Route path="/profile/:username/following" element={<Profile />} />
           </Route>
         </Routes>
       </Provider>

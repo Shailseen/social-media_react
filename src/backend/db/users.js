@@ -12,14 +12,14 @@ export const users = [
     lastName: "Maurya",
     username: "shashi1",
     email: "shashimourya1@gmail.com",
-    password: "shashi1234",
+    password: "shashi123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "bio mein interest hota toh aaj mai doctor hota",
     profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654089074/shashi_maurya_background_jcg8bi.jpg`,
     website: `https://shashikant-maurya.netlify.app/index.html`,
-    followers: [
+    follower: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -51,7 +51,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -95,8 +95,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: `Student  @neoG |  @Graphic era`,
-    backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654094890/tanay_pratap_background_vajqoq.jpg`,
-    followers: [
+    backgroundImage: `https://www.wallpapertip.com/wmimgs/83-838381_html-wallpaper-background-code-coding-tags.jpg`,
+    follower: [
       {
         firstName: `Kunal`,
         lastName: `Shah`,
@@ -116,7 +116,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: `Suumit`,
         lastName: `Shah`,
@@ -149,8 +149,8 @@ export const users = [
     bio: "cred karo khush reho",
     profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090092/kunal_shah_nvoz1m.jpg`,
     website: null,
-    backgroundImage: null,
-    followers: [
+    backgroundImage: `https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60`,
+    follower: [
       {
         firstName: `Suumit`,
         lastName: `Shah`,
@@ -164,7 +164,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: `shashi`,
         lastName: `Maurya`,
@@ -199,7 +199,7 @@ export const users = [
     profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090778/suumit_shah_mn2nhk.jpg`,
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654098623/summit_shah_background_fffbxg.jpg`,
     website: `https://mydukaan.io/`,
-    followers: [
+    follower: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -219,7 +219,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -266,7 +266,7 @@ export const users = [
     profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090778/suumit_shah_mn2nhk.jpg`,
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654100040/bhavish_aggarwal_background_vo5fmw.jpg`,
     website: `https://t.co/2fukVxoHsx`,
-    followers: [
+    follower: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -286,7 +286,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090778/suumit_shah_mn2nhk.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: `shashi`,
         lastName: `Maurya`,
@@ -325,7 +325,7 @@ export const users = [
     bio: `Founder-People Group, Shaadi.com | Tech/Brand Investor | Shark`,
     profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
     backgroundImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654101166/anupam_mittal_background_tlcaxw.jpg`,
-    followers: [
+    follower: [
       {
         firstName: "Shailesh",
         lastName: "Kumar",
@@ -351,7 +351,7 @@ export const users = [
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
       },
     ],
-    following: [
+    followings: [
       {
         firstName: `shashi`,
         lastName: `Maurya`,

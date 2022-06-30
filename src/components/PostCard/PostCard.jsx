@@ -20,6 +20,7 @@ import {
   unlikePost,
 } from "../../feature/postSlice";
 import Comments from "../Comments/Comments";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ postData }) => {
   const { bookmarks } = useSelector((state) => state.post);
@@ -34,7 +35,6 @@ const PostCard = ({ postData }) => {
     comments,
     likes: { likeCount, likedBy },
   } = postData;
-  console.log(username)
 
   const monthNames = [
     "January",
@@ -50,7 +50,7 @@ const PostCard = ({ postData }) => {
     "November",
     "December",
   ];
-  
+
   const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const day = createdAt.split("T")[0].split("-")[2];
   let month = createdAt.split("T")[0].split("-")[1];
@@ -59,6 +59,7 @@ const PostCard = ({ postData }) => {
   const [isEditPostModalOpen, setIsEditPostModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [commentDisplayStatus, setCommentDisplayStatus] = useState("hidden");
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
   const tooltipHandler = () => {
@@ -99,19 +100,29 @@ const PostCard = ({ postData }) => {
       : setCommentDisplayStatus("hidden");
   };
 
+  const getUserProfile = () => {
+    navigate(`/profile/${username}/posts`);
+  }
+
   return (
     <div className="flex flex-col flex-grow border mx-4 rounded-md bg-white my-2 shadow-sm">
       <div className="flex border-b-2 p-2">
         {profileImage ? (
-          <img src={profileImage} alt="" className="rounded-full w-14 h-14" />
+          <img
+            onClick={getUserProfile}
+            src={profileImage}
+            alt=""
+            className="rounded-full w-14 h-14 cursor-pointer"
+          />
         ) : (
           <img
+            onClick={getUserProfile}
             src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
             alt=""
-            className="rounded-full w-14 h-14"
+            className="rounded-full w-14 h-14 cursor-pointer"
           />
         )}
-        <div className="ml-3">
+        <div onClick={getUserProfile} className="ml-3 cursor-pointer">
           <p className="font-bold">
             {firstName} {lastName}
           </p>
