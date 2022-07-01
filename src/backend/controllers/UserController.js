@@ -264,6 +264,7 @@ export const unfollowUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   const { followUserId } = request.params;
   const followUser = this.db.users.findBy({ _id: followUserId });
+  console.log(user);
   try {
     if (!user) {
       return new Response(
@@ -277,25 +278,26 @@ export const unfollowUserHandler = function (schema, request) {
       );
     }
     const isFollowing = user.followings.some(
-      (currUser) => currUser._id === followUser._id
+      (currUser) => currUser.username === followUser.username
     );
 
     if (!isFollowing) {
       return new Response(400, {}, { errors: ["User already not following"] });
     }
-
     const updatedUser = {
       ...user,
       followings: user.followings.filter(
-        (currUser) => currUser._id !== followUser._id
+        (currUser) => currUser.username !== followUser.username
       ),
     };
+    console.log(user);
     const updatedFollowUser = {
       ...followUser,
       follower: followUser.follower.filter(
-        (currUser) => currUser._id !== user._id
+        (currUser) => currUser.username !== user.username
       ),
     };
+
     this.db.users.update(
       { _id: user._id },
       { ...updatedUser, updatedAt: formatDate() }

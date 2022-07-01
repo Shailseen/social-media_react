@@ -15,7 +15,7 @@ const SuggestionsCard = () => {
     let suggestionArray = user && users.filter((item) => item._id !== user._id);
   if (user) {
     suggestionArray = suggestionArray.filter((item) =>
-      !user.followings.find((item1) => item.username === item1.username)
+      !user?.followings?.find((item1) => item.username === item1.username)
     );
   }
   setSuggestionList(prev=> suggestionArray)

@@ -153,7 +153,8 @@ export const unFollowUser = createAsyncThunk(
       );
       return res.data.user;
     } catch (error) {
-      return thunkAPI.rejectWithValue;
+      console.log(error);
+      // return thunkAPI.rejectWithValue;
     }
   }
 );

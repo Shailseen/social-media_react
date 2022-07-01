@@ -164,7 +164,7 @@ export const Profile = () => {
           follower.length > 0 && (
             <div className="flex flex-col shadow-md bg-white mx-4 p-2 rounded-md">
               {follower.map((item) => {
-                return <FollowCard user={item} />;
+                return <FollowCard key={item.username} user={item} />;
               })}
             </div>
           )}
@@ -183,7 +183,7 @@ export const Profile = () => {
           followings.length > 0 && (
             <div className="flex flex-col shadow-md bg-white mx-4 p-2 rounded-md">
               {followings.map((item) => {
-                return <FollowCard user={item} />;
+                return <FollowCard key={item.username} user={item} />;
               })}
             </div>
           )}
