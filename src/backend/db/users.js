@@ -115,6 +115,12 @@ export const users = [
         username: `bhash`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
       },
+      {
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
+      },
     ],
     followings: [
       {
@@ -134,6 +140,12 @@ export const users = [
         lastName: `Mittal`,
         username: `AnupamMittal`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
+      },
+      {
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
     ],
   },
@@ -162,6 +174,12 @@ export const users = [
         lastName: ` Aggarwal`,
         username: `bhash`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
+      },
+      {
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
     ],
     followings: [
@@ -217,6 +235,12 @@ export const users = [
         lastName: `Mittal`,
         username: `AnupamMittal`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654092599/anupam_mittal_owirks.jpg`,
+      },
+      {
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
     ],
     followings: [
@@ -285,6 +309,12 @@ export const users = [
         username: `suumitshah`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090778/suumit_shah_mn2nhk.jpg`,
       },
+      {
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
+      },
     ],
     followings: [
       {
@@ -333,22 +363,16 @@ export const users = [
         profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
       },
       {
-        firstName: `Kunal`,
-        lastName: `Shah`,
-        username: `kunalb11`,
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090092/kunal_shah_nvoz1m.jpg`,
-      },
-      {
         firstName: `Suumit`,
         lastName: `Shah`,
         username: `suumitshah`,
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090778/suumit_shah_mn2nhk.jpg`,
       },
       {
-        firstName: `Bhavish`,
-        lastName: ` Aggarwal`,
-        username: `bhash`,
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654091110/bhavish_aggarwal_pc948b.jpg`,
+        firstName: `shashi`,
+        lastName: `Maurya`,
+        username: "shashi1",
+        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
       },
     ],
     followings: [
@@ -357,18 +381,6 @@ export const users = [
         lastName: `Maurya`,
         username: "shashi1",
         profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654086752/shashi_maurya_xrox2a.jpg`,
-      },
-      {
-        firstName: "Shailesh",
-        lastName: "Kumar",
-        username: "shailseen",
-        profileImage: `https://media-exp1.licdn.com/dms/image/C4E03AQHVRCaHAAOL2g/profile-displayphoto-shrink_800_800/0/1632640634175?e=1660176000&v=beta&t=SBW6Uj2R8pEmluwxNABDf6WkkR6sst1yIt6MPDjIXM8`,
-      },
-      {
-        firstName: `Kunal`,
-        lastName: `Shah`,
-        username: `kunalb11`,
-        profileImage: `https://res.cloudinary.com/dwqdlzlek/image/upload/v1654090092/kunal_shah_nvoz1m.jpg`,
       },
       {
         firstName: `Suumit`,
