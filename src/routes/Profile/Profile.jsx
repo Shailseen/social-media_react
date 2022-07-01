@@ -10,6 +10,7 @@ import {
   followUser,
   unFollowUser,
 } from "../../feature/authSlice";
+import Loader from "../../components/Loader/Loader";
 
 export const Profile = () => {
   const { postsByUsername, profileUser } = useSelector((state) => state.users);
@@ -90,7 +91,7 @@ export const Profile = () => {
           {user?.username === params && (
             <div className="cursor-pointer absolute top-60 left-40 rounded-full bg-white h-8 w-8 flex items-center justify-center">
               <PhotoCameraFrontRoundedIcon
-                sx={{ color: "var(--primary-color)",cursor: "pointer" }}
+                sx={{ color: "var(--primary-color)", cursor: "pointer" }}
               />
               <input
                 type="file"
@@ -143,6 +144,12 @@ export const Profile = () => {
       </div>
 
       <div>
+        {user && status === "loading" && (
+          <div className="w-fit mx-auto">
+            {" "}
+            <Loader />
+          </div>
+        )}
         {profileUser &&
           location === `/profile/${params}/posts` &&
           postsByUsername &&
