@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { commentPost, deleteCommentPost } from "../../feature/postSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loader from "../Loader/Loader";
+import { Link } from "react-router-dom";
 
 const Comments = ({ comments, postId, user }) => {
   const { status } = useSelector((state) => state.post);
@@ -70,7 +71,7 @@ const Comments = ({ comments, postId, user }) => {
       )}
       {commentsCopy.map((item) => {
         return (
-          <div
+          <Link to={`/profile/${item.username}/posts`}
             key={item._id}
             className="flex items-center m-2 rounded-sm shadow-md p-1 bg-slate-50"
           >
@@ -93,7 +94,7 @@ const Comments = ({ comments, postId, user }) => {
                 onClick={() => deleteCommentHandler(item._id)}
               />
             )}
-          </div>
+          </Link>
         );
       })}
     </div>

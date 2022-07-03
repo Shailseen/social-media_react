@@ -4,8 +4,10 @@ import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const BottomNav = () => {
+  const { user } = useSelector((state) => state.auth);
   let enableStyle = {
     color: "var(--primary-color)",
     textDecoration: "none",
@@ -38,7 +40,7 @@ export const BottomNav = () => {
         <BookmarkIcon sx={{ fontSize: "32px" }} />
       </NavLink>
       <NavLink
-        to="/c"
+        to={`/profile/${user.username}/posts`}
         style={({ isActive }) => (isActive ? enableStyle : disabledStyle)}
         className=""
       >

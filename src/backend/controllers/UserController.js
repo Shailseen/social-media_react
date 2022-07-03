@@ -22,7 +22,7 @@ export const getAllUsersHandler = function () {
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: userId }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -215,7 +215,7 @@ export const followUserHandler = function (schema, request) {
         }
       );
     }
-    const isFollowing = user.following.some(
+    const isFollowing = user.followings.some(
       (currUser) => currUser._id === followUser._id
     );
 
@@ -225,11 +225,11 @@ export const followUserHandler = function (schema, request) {
 
     const updatedUser = {
       ...user,
-      following: [...user.following, { ...followUser }],
+      followings: [...user.followings, { ...followUser }],
     };
     const updatedFollowUser = {
       ...followUser,
-      followers: [...followUser.followers, { ...user }],
+      follower: [...followUser.follower, { ...user }],
     };
     this.db.users.update(
       { _id: user._id },
@@ -264,6 +264,7 @@ export const unfollowUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   const { followUserId } = request.params;
   const followUser = this.db.users.findBy({ _id: followUserId });
+  console.log(user);
   try {
     if (!user) {
       return new Response(
@@ -276,26 +277,27 @@ export const unfollowUserHandler = function (schema, request) {
         }
       );
     }
-    const isFollowing = user.following.some(
-      (currUser) => currUser._id === followUser._id
+    const isFollowing = user.followings.some(
+      (currUser) => currUser.username === followUser.username
     );
 
     if (!isFollowing) {
       return new Response(400, {}, { errors: ["User already not following"] });
     }
-
     const updatedUser = {
       ...user,
-      following: user.following.filter(
-        (currUser) => currUser._id !== followUser._id
+      followings: user.followings.filter(
+        (currUser) => currUser.username !== followUser.username
       ),
     };
+    console.log(user);
     const updatedFollowUser = {
       ...followUser,
-      followers: followUser.followers.filter(
-        (currUser) => currUser._id !== user._id
+      follower: followUser.follower.filter(
+        (currUser) => currUser.username !== user.username
       ),
     };
+
     this.db.users.update(
       { _id: user._id },
       { ...updatedUser, updatedAt: formatDate() }

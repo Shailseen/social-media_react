@@ -89,7 +89,6 @@ const postSlice = createSlice({
         state.status = STATUSES.IDLE;
         state.posts = action.payload;
       })
-      ;
   },
 });
 
@@ -290,23 +289,6 @@ export const deleteCommentPost = createAsyncThunk(
   }
 );
 
-export const followUser = createAsyncThunk(
-  "post/follow",
-  async (userId, thunkAPI) => {
-    try {
-      const res = await axios.post(
-        `/api/users/follow/${userId}`,
-        {},
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
-      return res.data.user;
-    } catch (error) {
-      return thunkAPI.rejectWithValue;
-    }
-  }
-);
+
+
 export default postSlice.reducer;

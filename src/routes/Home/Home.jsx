@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <div>
-      <Search/>
+      <Search />
       {user && <NewPostCard />}
       {user && status === "loading" && (
         <div className="w-fit mx-auto">
@@ -33,9 +33,10 @@ const Home = () => {
         </div>
       )}
       <p className="ml-4 font-semibold text-xl">Your Posts</p>
-      {user && posts.map((item) => {
-        return <PostCard key={item._id} postData={item} />;
-      })}
+      {user &&
+        posts.map((item) => {
+          return <PostCard key={item._id} postData={item} />;
+        })}
     </div>
   );
 };

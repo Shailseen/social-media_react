@@ -3,6 +3,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useState } from "react";
 import { users } from "../../backend/db/users";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 export const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -60,7 +61,7 @@ export const Search = () => {
         {searchResult.length ? (
           searchResult.map((item) => {
             return (
-              <div
+              <Link to={`/profile/${item.username}/posts`}
                 key={item._id}
                 className="hover:bg-blue-100 cursor-pointer flex shadow-sm items-center m-2 rounded-sm p-1 border-2"
               >
@@ -75,7 +76,7 @@ export const Search = () => {
                   </p>
                   <p className="-mt-2 text-gray-400">@{item.username}</p>
                 </div>
-              </div>
+              </Link>
             );
           })
         ) : (

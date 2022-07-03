@@ -3,9 +3,9 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../feature/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
-  const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,11 +48,13 @@ const Navbar = () => {
           >
             Logout
           </button>
+          <Link to={`/profile/${user.username}/posts`}>
           <img
-            src={userProfile.profileImage}
+            src={user.profileImage}
             alt="User profile image"
             className="w-14 h-14 rounded-full m-1 cursor-pointer"
           />
+          </Link>
         </div>
       )}
     </div>

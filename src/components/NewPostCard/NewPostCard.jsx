@@ -4,9 +4,10 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import ModalPostCard from "../ModalPostCard/ModalPostCard";
 import CardIcons from "../CardIcons/CardIcons";
+import { useSelector } from "react-redux";
 
 const NewPostCard = () => {
-  const user = JSON.parse(localStorage.getItem("my-user-data"));
+  const {user} = useSelector((state) => state.auth);
   const { profileImage } = user;
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

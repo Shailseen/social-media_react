@@ -2,40 +2,20 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { unfollowUserHandler } from "../../backend/controllers/UserController";
 import { users } from "../../backend/db/users";
 import { followUser } from "../../feature/authSlice";
 
 const SuggestionsCard = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const userProfile = JSON.parse(localStorage.getItem("my-user-data"));
+  
   const [suggestionList,setSuggestionList] = useState([]);
-  // let totalUser = users.filter(
-  //   (item) => item.username !== userProfile.username
-  // );
-
-  // let suggesstionArray = [];
-  // for (const user of totalUser) {
-  //   let flag = false;
-  //   for (const item of userProfile.following) {
-  //     if (user.username === item.username) {
-  //       flag = true;
-  //       break;
-  //     }
-  //   }
-  //   if (!flag) {
-  //     suggesstionArray = [...suggesstionArray, user];
-  //   }
-  // }
-
-  // console.log(user)
+  
   useEffect(() => {
     let suggestionArray = user && users.filter((item) => item._id !== user._id);
   if (user) {
-    console.log(user.following)
     suggestionArray = suggestionArray.filter((item) =>
-      !user.following.find((item1) => item.username === item1.username)
+      !user?.followings?.find((item1) => item.username === item1.username)
     );
   }
   setSuggestionList(prev=> suggestionArray)
@@ -55,7 +35,7 @@ const SuggestionsCard = () => {
         return (
           <div
             key={item._id}
-            className="flex w-full shadow-sm items-center m-2 rounded-sm p-1 border-2"
+            className="flex w-full shadow-sm items-center mx-auto my-2 rounded-sm p-1 border-2"
           >
             <img
               src={item.profileImage}
